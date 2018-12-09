@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>NSHL Player Creator</title>
+    <link href="style.css" rel="stylesheet">
+    <script type="text/javascript">
+      var skater_attributes = {
+        screening: 0,
+        gettingOpen: 0,
+        passing: 0,
+        puckhandling: 0,
+        shootingAccuracy: 0,
+        shootingRange: 0,
+        offensiveRead: 0,
+        passShootTendency: 0,
+        checking: 0,
+        faceoffs: 0,
+        hitting: 0,
+        positioning: 0,
+        shotBlocking: 0,
+        stickchecking: 0,
+        defensiveRead: 0,
+        acceleration: 0,
+        agility: 0,
+        balance: 0,
+        speed: 0,
+        stamina: 0,
+        strength: 0,
+        fighting: 0,
+        aggression: 0,
+        bravery: 0,
+        determination: 0,
+        teamplayer: 0,
+        leadership: 0,
+        professionalism: 0,
+        temperament: 0,
+        bigGames: 0,
+        consistency: 0,
+        adaptability: 0,
+        sportsmanship: 0,
+        handleFailure: 0,
+        handleSuccess: 0
+      };
+
+      var skater_mins = {
+        screening: 0,
+        gettingOpen: 0,
+        passing: 0,
+        puckhandling: 0,
+        shootingAccuracy: 0,
+        shootingRange: 0,
+        offensiveRead: 0,
+        passShootTendency: 0,
+        checking: 0,
+        faceoffs: 0,
+        hitting: 0,
+        positioning: 0,
+        shotBlocking: 0,
+        stickchecking: 0,
+        defensiveRead: 0,
+        acceleration: 0,
+        agility: 0,
+        balance: 0,
+        speed: 0,
+        stamina: 0,
+        strength: 0,
+        fighting: 0,
+        aggression: 0,
+        bravery: 0,
+        determination: 0,
+        teamplayer: 0,
+        leadership: 0,
+        professionalism: 0,
+        temperament: 0,
+        bigGames: 0,
+        consistency: 0,
+        adaptability: 0,
+        sportsmanship: 0,
+        handleFailure: 0,
+        handleSuccess: 0
+      };
+
+      var skater_maxes = {
+        screening: 0,
+        gettingOpen: 0,
+        passing: 0,
+        puckhandling: 0,
+        shootingAccuracy: 0,
+        shootingRange: 0,
+        offensiveRead: 0,
+        passShootTendency: 0,
+        checking: 0,
+        faceoffs: 0,
+        hitting: 0,
+        positioning: 0,
+        shotBlocking: 0,
+        stickchecking: 0,
+        defensiveRead: 0,
+        acceleration: 0,
+        agility: 0,
+        balance: 0,
+        speed: 0,
+        stamina: 0,
+        strength: 0,
+        fighting: 0,
+        aggression: 0,
+        bravery: 0,
+        determination: 0,
+        teamplayer: 0,
+        leadership: 0,
+        professionalism: 0,
+        temperament: 0,
+        bigGames: 0,
+        consistency: 0,
+        adaptability: 0,
+        sportsmanship: 0,
+        handleFailure: 0,
+        handleSuccess: 0
+      };
+
+      var goalie_attributes = {
+        blocker: 0,
+        glove: 0,
+        passing: 0,
+        pokeCheck: 0,
+        positioning: 0,
+        rebound: 0,
+        recovery: 0,
+        puckhandling: 0,
+        lowShots: 0,
+        reflexes: 0,
+        skating: 0,
+        aggression: 0,
+        determination: 0,
+        teamplayer: 0,
+        leadership: 0,
+        professionalism: 0,
+        mentalToughness: 0,
+        goalieStamina: 0,
+        bigGames: 0,
+        consistency: 0,
+        adaptability: 0,
+        sportsmanship: 0,
+        handleFailure: 0,
+        handleSuccess: 0
+      };
+
+      var goalie_mins = {
+        blocker: 0,
+        glove: 0,
+        passing: 0,
+        pokeCheck: 0,
+        positioning: 0,
+        rebound: 0,
+        recovery: 0,
+        puckhandling: 0,
+        lowShots: 0,
+        reflexes: 0,
+        skating: 0,
+        aggression: 0,
+        determination: 0,
+        teamplayer: 0,
+        leadership: 0,
+        professionalism: 0,
+        mentalToughness: 0,
+        goalieStamina: 0,
+        bigGames: 0,
+        consistency: 0,
+        adaptability: 0,
+        sportsmanship: 0,
+        handleFailure: 0,
+        handleSuccess: 0
+      };
+
+      var goalie_maxes = {
+        blocker: 0,
+        glove: 0,
+        passing: 0,
+        pokeCheck: 0,
+        positioning: 0,
+        rebound: 0,
+        recovery: 0,
+        puckhandling: 0,
+        lowShots: 0,
+        reflexes: 0,
+        skating: 0,
+        aggression: 0,
+        determination: 0,
+        teamplayer: 0,
+        leadership: 0,
+        professionalism: 0,
+        mentalToughness: 0,
+        goalieStamina: 0,
+        bigGames: 0,
+        consistency: 0,
+        adaptability: 0,
+        sportsmanship: 0,
+        handleFailure: 0,
+        handleSuccess: 0
+      };
+
+      function addTraits(playerType) {
+        if (playerType == "skater") {
+          var traits = new Array(3);
+          traits[0] = document.getElementById('skaterTraitSelectorOne').value;
+          traits[1] = document.getElementById('skaterTraitSelectorTwo').value;
+          traits[2] = document.getElementById('skaterTraitSelectorThree').value;
+          for (var i = 0; i < traits.length; i++) {
+            switch (traits[i]) {
+              case "ST1":
+                skater_maxes.screening += 1;
+                break;
+              case "ST2":
+                skater_maxes.gettingOpen += 1;
+                break;
+              case "ST3":
+                skater_maxes.passing += 1;
+                break;
+              case "ST4":
+                skater_maxes.puckhandling += 1;
+                break;
+              case "ST5":
+                skater_maxes.shootingAccuracy += 1;
+                break;
+              case "ST6":
+                skater_attributes.shootingRange += 1;
+                skater_mins.shootingRange += 1;
+                skater_maxes.shootingRange += 1;
+                break;
+              case "ST7":
+                skater_maxes.offensiveRead += 1;
+                break;
+              case "ST8":
+                skater_attributes.passShootTendency += 1;
+                skater_mins.passShootTendency += 1;
+                skater_maxes.passShootTendency += 1;
+                break;
+              case "ST9":
+                skater_attributes.passShootTendency -= 1;
+                skater_mins.passShootTendency -= 1;
+                skater_maxes.passShootTendency -= 1;
+                break;
+              case "ST10":
+                skater_maxes.checking += 1;
+                break;
+              case "ST11":
+                skater_maxes.faceoffs += 1;
+                break;
+              case "ST12":
+                skater_maxes.hitting += 1;
+                break;
+              case "ST13":
+                skater_maxes.positioning += 1;
+                break;
+              case "ST14":
+                skater_maxes.shotBlocking += 1;
+                break;
+              case "ST15":
+                skater_maxes.stickchecking += 1;
+                break;
+              case "ST16":
+                skater_maxes.defensiveRead += 1;
+                break;
+              case "ST17":
+                skater_maxes.acceleration += 1;
+                break;
+              case "ST18":
+                skater_maxes.agility += 1;
+                break;
+              case "ST19":
+                skater_maxes.balance += 1;
+                break;
+              case "ST20":
+                skater_maxes.speed += 1;
+                break;
+              case "ST21":
+                skater_maxes.stamina += 1;
+                break;
+              case "ST22":
+                skater_maxes.strength += 1;
+                break;
+              case "ST23":
+                skater_maxes.fighting += 1;
+                break;
+              case "ST24":
+                skater_attributes.aggression += 1;
+                skater_mins.aggression += 1;
+                skater_maxes.aggression += 1;
+                break;
+              case "ST25":
+                skater_maxes.bravery += 1;
+                break;
+              case "ST26":
+                skater_attributes.determination += 1;
+                skater_mins.determination += 1;
+                skater_maxes.determination += 1;
+                break;
+              case "ST27":
+                skater_attributes.teamplayer += 1;
+                skater_mins.teamplayer += 1;
+                skater_maxes.teamplayer += 1;
+                break;
+              case "ST28":
+                skater_attributes.leadership += 1;
+                skater_mins.leadership += 1;
+                skater_maxes.leadership += 1;
+                break;
+              case "ST29":
+                skater_attributes.professionalism += 1;
+                skater_mins.professionalism += 1;
+                skater_maxes.professionalism += 1;
+                break;
+              case "ST30":
+                skater_attributes.temperament += 1;
+                skater_mins.temperament += 1;
+                skater_maxes.temperament += 1;
+                break;
+              case "ST31":
+                skater_attributes.bigGames += 1;
+                skater_mins.bigGames += 1;
+                skater_maxes.bigGames += 1;
+                break;
+              case "ST32":
+                skater_attributes.adaptability += 1;
+                skater_mins.adaptability += 1;
+                skater_maxes.adaptability += 1;
+                break;
+              case "ST33":
+                skater_attributes.consistency += 1;
+                skater_mins.consistency += 1;
+                skater_maxes.consistency += 1;
+                break;
+              case "ST34":
+                skater_attributes.sportsmanship += 1;
+                skater_mins.sportsmanship += 1;
+                skater_maxes.sportsmanship += 1;
+                break;
+              case "ST35":
+                skater_attributes.handleFailure += 1;
+                skater_mins.handleFailure += 1;
+                skater_maxes.handleFailure += 1;
+                break;
+              case "ST36":
+                skater_attributes.handleSuccess += 1;
+                skater_mins.handleSuccess += 1;
+                skater_maxes.handleSuccess += 1;
+                break;
+              default:
+
+            }
+          }
+        } else {
+          var traits = new Array(2);
+          traits[0] = document.getElementById('goalieTraitSelectorOne').value;
+          traits[1] = document.getElementById('goalieTraitSelectorTwo').value;
+          for (var i = 0; i < traits.length; i++) {
+            switch (traits[i]) {
+              case "GT1":
+                goalie_maxes.blocker += 1;
+                break;
+              case "GT2":
+                goalie_maxes.glove += 1;
+                break;
+              case "GT3":
+                goalie_maxes.passing += 1;
+                break;
+              case "GT4":
+                goalie_maxes.pokeCheck += 1;
+                break;
+              case "GT5":
+                goalie_maxes.positioning += 1;
+                break;
+              case "GT6":
+                goalie_maxes.rebound += 1;
+                break;
+              case "GT7":
+                goalie_maxes.recovery += 1;
+                break;
+              case "GT8":
+                goalie_maxes.lowShots += 1;
+                break;
+              case "GT9":
+                goalie_maxes.reflexes += 1;
+                break;
+              case "GT10":
+                goalie_maxes.skating += 1;
+                break;
+              case "GT11":
+                goalie_attributes.aggression += 1;
+                goalie_mins.aggression += 1;
+                goalie_maxes.aggression += 1;
+                break;
+              case "GT12":
+                goalie_attributes.determination += 1;
+                goalie_mins.determination += 1;
+                goalie_maxes.determination += 1;
+                break;
+              case "GT13":
+                goalie_attributes.teamplayer += 1;
+                goalie_mins.teamplayer += 1;
+                goalie_maxes.teamplayer += 1;
+                break;
+              case "GT14":
+                goalie_attributes.leadership += 1;
+                goalie_mins.leadership += 1;
+                goalie_maxes.leadership += 1;
+                break;
+              case "GT15":
+                goalie_attributes.professionalism += 1;
+                goalie_mins.professionalism += 1;
+                goalie_maxes.professionalism += 1;
+                break;
+              case "GT16":
+                goalie_attributes.mentalToughness += 1;
+                goalie_mins.mentalToughness += 1;
+                goalie_maxes.mentalToughness += 1;
+                break;
+              case "GT17":
+                goalie_maxes.goalieStamina += 1;
+                break;
+              case "GT18":
+                goalie_attributes.bigGames += 1;
+                goalie_mins.bigGames += 1;
+                goalie_maxes.bigGames += 1;
+                break;
+              case "GT19":
+                goalie_attributes.consistency += 1;
+                goalie_mins.consistency += 1;
+                goalie_maxes.consistency += 1;
+                break;
+              case "GT20":
+                goalie_attributes.adaptability += 1;
+                goalie_mins.adaptability += 1;
+                goalie_maxes.adaptability += 1;
+                break;
+              case "GT21":
+                goalie_attributes.sportsmanship += 1;
+                goalie_mins.sportsmanship += 1;
+                goalie_maxes.sportsmanship += 1;
+                break;
+              case "GT22":
+                goalie_attributes.handleFailure += 1;
+                goalie_mins.handleFailure += 1;
+                goalie_maxes.handleFailure += 1;
+                break;
+              case "GT23":
+                goalie_attributes.handleSuccess += 1;
+                goalie_mins.handleSuccess += 1;
+                goalie_maxes.handleSuccess += 1;
+                break;
+              default:
+            }
+          }
+        }
+      }
+
+      function updateAttributeTable(playerType) {
+        addTraits(playerType);
+        if (playerType == "skater") {
+          for (key in skater_attributes) {
+            fixedKey = key.replace(/([A-Z])/g, ' $1').trim();
+            document.getElementById(key + '-At').innerHTML = fixedKey.charAt(0).toUpperCase() + fixedKey.slice(1);
+            document.getElementById(key + '-Min').innerHTML = skater_mins[key];
+            document.getElementById(key + '-Max').innerHTML = skater_maxes[key];
+            document.getElementById(key + '-Level').innerHTML = skater_attributes[key];
+          }
+        } else {
+          for (key in goalie_attributes) {
+            fixedKey = key.replace(/([A-Z])/g, ' $1').trim();
+            document.getElementById(key + '-Atg').innerHTML = fixedKey.charAt(0).toUpperCase() + fixedKey.slice(1);
+            document.getElementById(key + '-Ming').innerHTML = goalie_mins[key];
+            document.getElementById(key + '-Maxg').innerHTML = goalie_maxes[key];
+            document.getElementById(key + '-Start').innerHTML = goalie_attributes[key];
+          }
+        }
+      }
+
+      function setSkaterAttributes(at, mi, ma) {
+        var i = 0;
+        for (key in skater_attributes) {
+          skater_attributes[key] = at[i];
+          skater_mins[key] = mi[i];
+          skater_maxes[key] = ma[i];
+          i++;
+        }
+        updateAttributeTable("skater");
+      }
+
+      function setGoalieAttributes(at, mi, ma) {
+        var i = 0;
+        for (key in goalie_attributes) {
+          goalie_attributes[key] = at[i];
+          goalie_mins[key] = mi[i];
+          goalie_maxes[key] = ma[i];
+          i++;
+        }
+        updateAttributeTable("goalie");
+      }
+
+      function changeSkaterArchetype() {
+        enableSkaterTraits();
+        switch (document.getElementById('skaterArchetypeSelector').value) {
+          // var atts = [
+          //   screening, gettingOpen, passing, puckhandling, shootingAccuracy, shootingRange, offensiveRead, passShootTendency,
+          //   checking, faceoffs, hitting, positioning, shotBlocking, stickchecking, defensiveRead,
+          //   acceleration, agility, balance, speed, stamina, strength, fighting,
+          //   aggression, bravery, determination, teamplayer, leadership, professionalism, temperament,
+          //   bigGames, consistency, adaptability, sportsmanship, handleFailure, handleSuccess
+          // ];
+          case "F1": // Perimeter Shooter
+            var attributes = [
+              1, 1, 1, 1, 1, 10, 1, 7,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 10, 1, 7,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 18, 12, 12, 18, 10, 18, 7,
+              12, 10, 12, 12, 7, 12, 12,
+              15, 15, 12, 15, 12, 12, 12,
+              6, 12, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "F2": // Slot Sniper
+            var attributes = [
+              1, 1, 1, 1, 1, 8, 1, 7,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 8, 1, 7,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              15, 12, 12, 15, 18, 8, 18, 7,
+              12, 10, 12, 12, 7, 12, 12,
+              12, 15, 18, 12, 12, 12, 12,
+              6, 13, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "F3": // Dangler
+            var attributes = [
+              1, 1, 1, 1, 1, 7, 1, 7,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 7, 1, 7,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 12, 12, 18, 15, 7, 15, 7,
+              12, 10, 12, 12, 7, 12, 12,
+              18, 18, 12, 15, 12, 12, 12,
+              6, 14, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "F4": // Speedy Forward
+            var attributes = [
+              1, 1, 1, 1, 1, 7, 1, 11,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              7, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 7, 1, 11,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              7, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 18, 12, 15, 12, 7, 1, 11,
+              12, 10, 12, 12, 7, 12, 12,
+              18, 15, 12, 18, 15, 12, 12,
+              7, 14, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "F5": // Playmaker
+            var attributes = [
+              1, 1, 1, 1, 1, 7, 1, 10,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 7, 1, 10,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 15, 15, 18, 12, 7, 18, 10,
+              12, 10, 12, 12, 7, 12, 12,
+              12, 18, 15, 12, 12, 12, 12,
+              6, 14, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "F6": // Setup Man
+            var attributes = [
+              1, 1, 1, 1, 1, 7, 1, 11,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 7, 1, 11,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 15, 18, 18, 12, 7, 18, 11,
+              12, 10, 12, 12, 7, 12, 12,
+              12, 15, 15, 12, 12, 12, 12,
+              6, 14, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "F7": // Screener
+            var attributes = [
+              1, 1, 1, 1, 1, 6, 1, 9,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              7, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 6, 1, 9,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              7, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              18, 12, 12, 12, 12, 6, 15, 9,
+              12, 10, 15, 12, 7, 15, 12,
+              12, 12, 18, 12, 12, 18, 12,
+              7, 16, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "F8": // Power Forward
+            var attributes = [
+              1, 1, 1, 1, 1, 7, 1, 10,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              7, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 7, 1, 10,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              7, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              15, 12, 12, 18, 12, 7, 12, 10,
+              15, 10, 18, 12, 7, 12, 12,
+              12, 12, 15, 12, 12, 18, 12,
+              7, 17, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "F9": // Counterattacking Forward
+            var attributes = [
+              1, 1, 1, 1, 1, 7, 1, 10,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 7, 1, 10,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 12, 15, 12, 12, 7, 18, 10,
+              12, 10, 12, 18, 7, 12, 15,
+              18, 15, 12, 12, 12, 12, 12,
+              6, 14, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "F10": // Two-Way Forward
+            var attributes = [
+              1, 1, 1, 1, 1, 7, 1, 11,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 7, 1, 11,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 12, 12, 12, 12, 7, 15, 11,
+              15, 10, 12, 18, 7, 18, 18,
+              12, 12, 12, 12, 12, 15, 12,
+              6, 16, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "F11": // Grinder
+            var attributes = [
+              1, 1, 1, 1, 1, 6, 1, 12,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              8, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 6, 1, 12,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              8, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 12, 12, 12, 12, 6, 1, 12,
+              15, 10, 15, 15, 7, 12, 12,
+              18, 18, 12, 18, 12, 12, 12,
+              8, 18, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "F12": // Punishing Forward
+            var attributes = [
+              1, 1, 1, 1, 1, 6, 1, 13,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              9, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 6, 1, 13,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              9, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 12, 12, 12, 12, 6, 12, 13,
+              18, 10, 18, 15, 7, 12, 12,
+              15, 12, 15, 12, 12, 18, 12,
+              9, 18, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "F13": // Backchecking Forward
+            var attributes = [
+              1, 1, 1, 1, 1, 6, 1, 13,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              7, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 6, 1, 13,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              7, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 12, 12, 12, 12, 6, 12, 13,
+              15, 10, 12, 18, 7, 15, 18,
+              18, 12, 12, 15, 12, 12, 12,
+              7, 16, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "F14": // Defensive Forward
+            var attributes = [
+              1, 1, 1, 1, 1, 6, 1, 14,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              7, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 6, 1, 14,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              7, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 12, 12, 12, 12, 6, 12, 14,
+              15, 10, 12, 18, 15, 18, 12,
+              12, 12, 12, 15, 12, 12, 12,
+              7, 18, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "F15": // Enforcer
+            var attributes = [
+              1, 1, 1, 1, 1, 6, 1, 12,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              9, 18, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 6, 1, 12,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              9, 18, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 12, 12, 12, 12, 6, 12, 12,
+              15, 10, 18, 12, 7, 12, 12,
+              12, 12, 15, 12, 15, 18, 18,
+              9, 18, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "D1": // Playmaking Defenseman
+            var attributes = [
+              1, 1, 1, 1, 1, 16, 1, 14,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 16, 1, 14,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 12, 18, 18, 7, 16, 18, 14,
+              12, 10, 12, 12, 12, 12, 12,
+              15, 15, 15, 12, 12, 12, 12,
+              6, 14, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "D2": // Quarterback
+            var attributes = [
+              1, 1, 1, 1, 1, 16, 1, 11,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 16, 1, 11,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 15, 15, 18, 9, 16, 18, 11,
+              12, 10, 12, 12, 12, 12, 12,
+              18, 12, 12, 12, 12, 12, 12,
+              6, 14, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "D3": // Point Shooter
+            var attributes = [
+              1, 1, 1, 1, 1, 18, 1, 9,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 18, 1, 9,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 18, 12, 15, 18, 18, 18, 9,
+              12, 10, 12, 12, 12, 12, 12,
+              15, 15, 12, 12, 12, 12, 12,
+              6, 12, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "D4": // Two-Way Defenseman
+            var attributes = [
+              1, 1, 1, 1, 1, 14, 1, 12,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              7, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 14, 1, 12,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              7, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 12, 12, 18, 7, 14, 15, 12,
+              15, 10, 12, 18, 12, 12, 18,
+              12, 12, 15, 12, 12, 12, 12,
+              7, 16, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "D5": // Mobile Defenseman
+            var attributes = [
+              1, 1, 1, 1, 1, 14, 1, 12,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              7, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 14, 1, 12,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              7, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 12, 15, 15, 7, 14, 12, 12,
+              12, 10, 12, 12, 12, 12, 12,
+              18, 18, 12, 18, 15, 12, 12,
+              7, 16, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "D6": // Stay-at-Home Defenseman
+            var attributes = [
+              1, 1, 1, 1, 1, 12, 1, 14,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              8, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 12, 1, 14,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              8, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 12, 12, 12, 7, 12, 1, 14,
+              18, 10, 15, 15, 15, 12, 18,
+              12, 12, 12, 12, 12, 18, 12,
+              8, 18, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "D7": // Punishing Defenseman
+            var attributes = [
+              1, 1, 1, 1, 1, 12, 1, 15,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              9, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 12, 1, 15,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              9, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 12, 12, 12, 7, 12, 12, 15,
+              18, 10, 18, 12, 15, 12, 12,
+              12, 12, 15, 12, 12, 18, 15,
+              9, 18, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "D8": // Minute Munching Defenseman
+            var attributes = [
+              1, 1, 1, 1, 1, 12, 1, 13,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 12, 1, 13,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              6, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 12, 12, 12, 7, 12, 12, 13,
+              15, 10, 12, 18, 15, 15, 18,
+              12, 12, 12, 12, 18, 12, 12,
+              6, 14, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "D9": // Enforcer
+            var attributes = [
+              1, 1, 1, 1, 1, 12, 1, 15,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              9, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 12, 1, 15,
+              1, 1, 1, 1, 1, 1, 1,
+              1, 1, 1, 1, 1, 1, 1,
+              9, 1, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 12, 12, 12, 7, 12, 12, 15,
+              15, 10, 18, 12, 12, 12, 12,
+              12, 12, 15, 12, 15, 18, 18,
+              9, 18, 15, 15, 13, 15, 13,
+              10, 15, 10, 10, 10, 10
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+
+          case "Arch Not Chosen":
+            disableSkaterTraits();
+            var attributes = [
+              0, 0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0
+            ];
+            var mins = [
+              0, 0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0
+            ];
+            var maxes = [
+              0, 0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0
+            ];
+            setSkaterAttributes(attributes, mins, maxes);
+            break;
+          default:
+            break;
+        }
+        for (key in skater_maxes) {
+          if (skater_maxes[key] > 20) {
+            newKey = key.replace(/([A-Z])/g, ' $1').trim();
+            alert("WARNING: Attributes cannot be increased above 20. Fix your traits.\nSpecifically: " + newKey.charAt(0).toUpperCase() + newKey.slice(1));
+          }
+        }
+      }
+
+      function changeGoalieArchetype() {
+        enableGoalieTraits();
+        switch (document.getElementById('goalieArchetypeSelector').value) {
+          case "G1": // Standup
+            // blocker, glove, passing, pokeCheck, positioning, rebound, recovery, puckhandling, lowShots, reflexes, skating
+            // aggressiong, determination, teamplayer, leadership, professionalism, mentalToughness, goalieStamina
+            // bigGames, consistency, adaptability, sportsmanship, handleFailure, handleSuccess
+            var attributes = [
+              1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+              1, 15, 15, 13, 15, 15, 1,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+              1, 15, 15, 13, 15, 15, 1,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              18, 18, 15, 15, 12, 12, 12, 12, 10, 12, 12,
+              12, 15, 15, 13, 15, 15, 12,
+              10, 15, 10, 10, 10, 10
+            ];
+            setGoalieAttributes(attributes, mins, maxes);
+            break;
+
+          case "G2": // Aggressive Goalie
+            var attributes = [
+              1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+              1, 15, 15, 13, 15, 15, 1,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+              1, 15, 15, 13, 15, 15, 1,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 12, 12, 18, 10, 12, 12, 12, 12, 15, 15,
+              18, 15, 15, 13, 15, 15, 12,
+              10, 15, 10, 10, 10, 10
+            ];
+            setGoalieAttributes(attributes, mins, maxes);
+            break;
+
+          case "G3": // Pure Butterfly
+            var attributes = [
+              1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+              1, 15, 15, 13, 15, 15, 1,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+              1, 15, 15, 13, 15, 15, 1,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              11, 11, 12, 12, 18, 15, 15, 12, 18, 12, 12,
+              12, 15, 15, 13, 15, 15, 12,
+              10, 15, 10, 10, 10, 10
+            ];
+            setGoalieAttributes(attributes, mins, maxes);
+            break;
+
+          case "G4": // Technical
+            var attributes = [
+              1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+              1, 15, 15, 13, 15, 15, 1,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+              1, 15, 15, 13, 15, 15, 1,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 12, 12, 12, 18, 18, 15, 12, 12, 10, 12,
+              12, 15, 15, 13, 15, 15, 15,
+              10, 15, 10, 10, 10, 10
+            ];
+            setGoalieAttributes(attributes, mins, maxes);
+            break;
+
+          case "G5": // Reflexes
+            var attributes = [
+              1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+              1, 15, 15, 13, 15, 15, 1,
+              10, 15, 10, 10, 10, 10
+            ];
+            var mins = [
+              1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+              1, 15, 15, 13, 15, 15, 1,
+              10, 15, 10, 10, 10, 10
+            ];
+            var maxes = [
+              12, 15, 12, 12, 15, 12, 18, 12, 12, 18, 12,
+              10, 15, 15, 13, 15, 15, 12,
+              10, 15, 10, 10, 10, 10
+            ];
+            setGoalieAttributes(attributes, mins, maxes);
+            break;
+          case "Arch Not Chosen":
+            disableGoalieTraits();
+            var attributes = [
+              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0
+            ];
+            var mins = [
+              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0
+            ];
+            var maxes = [
+              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0, 0,
+              0, 0, 0, 0, 0, 0
+            ];
+            setGoalieAttributes(attributes, mins, maxes);
+          default:
+        }
+        for (key in goalie_maxes) {
+          if (goalie_maxes[key] > 20) {
+            newKey = key.replace(/([A-Z])/g, ' $1').trim();
+            alert("WARNING: Attributes cannot be increased above 20. Fix your traits.\nSpecifically: " + newKey.charAt(0).toUpperCase() + newKey.slice(1));
+          }
+        }
+      }
+
+      function changePosition() {
+        switch (document.getElementById('positionSelector').value) {
+          case "S":
+            document.getElementById('divSkaterArchetype').hidden = false;
+            document.getElementById('divGoalieArchetype').hidden = true;
+            break;
+          case "G":
+            document.getElementById('divSkaterArchetype').hidden = true;
+            document.getElementById('divGoalieArchetype').hidden = false;
+            break;
+          default:
+        }
+      }
+
+      function enableSkaterTraits() {
+        document.getElementById('skaterTraitSelectorOne').disabled = false;
+        document.getElementById('skaterTraitSelectorTwo').disabled = false;
+        document.getElementById('skaterTraitSelectorThree').disabled = false;
+      }
+
+      function enableGoalieTraits() {
+        document.getElementById('goalieTraitSelectorOne').disabled = false;
+        document.getElementById('goalieTraitSelectorTwo').disabled = false;
+      }
+
+      function disableSkaterTraits() {
+        document.getElementById('skaterTraitSelectorOne').disabled = true;
+        document.getElementById('skaterTraitSelectorTwo').disabled = true;
+        document.getElementById('skaterTraitSelectorThree').disabled = true;
+        document.getElementById('skaterTraitSelectorOne').selectedIndex = 0;
+        document.getElementById('skaterTraitSelectorTwo').selectedIndex = 0;
+        document.getElementById('skaterTraitSelectorThree').selectedIndex = 0;
+      }
+
+      function disableGoalieTraits() {
+        document.getElementById('goalieTraitSelectorOne').disabled = true;
+        document.getElementById('goalieTraitSelectorTwo').disabled = true;
+        document.getElementById('goalieTraitSelectorOne').selectedIndex = 0;
+        document.getElementById('goalieTraitSelectorTwo').selectedIndex = 0;
+      }
+
+      function copyStringToClipboard (str) {
+        // Create new element
+        var el = document.createElement('textarea');
+        // Set value (string to be copied)
+        el.value = str;
+        // Set non-editable to avoid focus and move outside of view
+        el.setAttribute('readonly', '');
+        el.style = {position: 'absolute', left: '-9999px'};
+        document.body.appendChild(el);
+        // Select text inside element
+        el.select();
+        // Copy text to clipboard
+        document.execCommand('copy');
+        // Remove temporary element
+        document.body.removeChild(el);
+      }
+
+      function generatePlayerPage() {
+        if (document.getElementById('positionSelector').value == "S") {
+          // skater
+          if (document.getElementById('skaterArchetypeSelector').value == "Arch Not Chosen") {
+            alert("You must choose an archetype and traits before generating your player page.");
+            return;
+          }
+
+          if (document.getElementById('skaterTraitSelectorOne').value == "T1 Not Chosen" ||
+              document.getElementById('skaterTraitSelectorTwo').value == "T2 Not Chosen" ||
+              document.getElementById('skaterTraitSelectorThree') == "T3 Not Chosen".value) {
+            alert("You must choose your traits before generating your player page.");
+            return;
+          }
+
+          for (key in skater_maxes) {
+            if (skater_maxes[key] > 20) {
+              alert("WARNING: Attributes cannot be increased above 20. Fix your traits.\nSpecifically: " + key.replace(/([A-Z])/g, ' $1').trim());
+              return;
+            }
+          }
+
+          var playerType = document.getElementById('skaterArchetypeSelector').options[document.getElementById('skaterArchetypeSelector').selectedIndex].innerHTML;
+          var trait1 = document.getElementById('skaterTraitSelectorOne').options[document.getElementById('skaterTraitSelectorOne').selectedIndex].innerHTML;
+          var trait2 = document.getElementById('skaterTraitSelectorTwo').options[document.getElementById('skaterTraitSelectorTwo').selectedIndex].innerHTML;
+          var trait3 = document.getElementById('skaterTraitSelectorThree').options[document.getElementById('skaterTraitSelectorThree').selectedIndex].innerHTML;
+
+          var userInfo = "[color=red][b][u]User Information[/b][/u][/color]\nUsername:\nRecruited by:\n\n";
+          var playerInfo = "[color=red][b][u]Player Information[/b][/u][/color]\nFull Name:\nAge:\nDate of Birth:\nCity of Birth:\nNationality:\nHeight:\nWeight:\nShoots:\nPosition: \nPlayer Type: [b]" + playerType + "[/b]\n\n";
+          var playerTraits = "[color=red][b][u]Traits Gained[/b][/u][/color]\nStarting Trait 1: " + trait1 + "\nStarting Trait 2: " + trait2 + "\nStarting Trait 3: " + trait3 + "\n\n";
+          var playerAttributesBanked = "[color=red][b][u]Player Attributes[/b][/u][/color]\n[b]Banked TPE:[/b] 0\n\n";
+
+          var playerAttributesOffensive = "[b]Offensive Attributes[/b]" +
+          "\n(MIN: " + skater_mins.screening + ") (MAX: " + skater_maxes.screening + ") Screening: " + skater_attributes.screening +
+          "\n(MIN: " + skater_mins.gettingOpen + ") (MAX: " + skater_maxes.gettingOpen + ") Getting Open: " + skater_attributes.gettingOpen +
+          "\n(MIN: " + skater_mins.passing + ") (MAX: " + skater_maxes.passing + ") Passing: " + skater_attributes.passing +
+          "\n(MIN: " + skater_mins.puckhandling + ") (MAX: " + skater_maxes.puckhandling + ") Puckhandling: " + skater_attributes.puckhandling +
+          "\n(MIN: " + skater_mins.shootingAccuracy + ") (MAX: " + skater_maxes.shootingAccuracy + ") Shooting Accuracy: " + skater_attributes.shootingAccuracy +
+          "\n(MIN: " + skater_mins.shootingRange + ") (MAX: " + skater_maxes.shootingRange + ") Shooting Range: " + skater_attributes.shootingRange +
+          "\n(MIN: " + skater_mins.offensiveRead + ") (MAX: " + skater_maxes.offensiveRead + ") Offensive Read: " + skater_attributes.offensiveRead +
+          "\n(MIN: " + skater_mins.passShootTendency + ") (MAX: " + skater_maxes.passShootTendency + ") Pass/Shoot Tendency: " + skater_attributes.passShootTendency + "\n\n";
+
+          var playerAttributesDefensive = "[b]Defensive Attributes[/b]" +
+          "\n(MIN: " + skater_mins.checking + ") (MAX: " + skater_maxes.checking + ") Checking: " + skater_attributes.checking +
+          "\n(MIN: " + skater_mins.faceoffs + ") (MAX: " + skater_maxes.faceoffs + ") Faceoffs: " + skater_attributes.faceoffs +
+          "\n(MIN: " + skater_mins.hitting + ") (MAX: " + skater_maxes.hitting + ") Hitting: " + skater_attributes.hitting +
+          "\n(MIN: " + skater_mins.positioning + ") (MAX: " + skater_maxes.positioning + ") Positioning: " + skater_attributes.positioning +
+          "\n(MIN: " + skater_mins.shotBlocking + ") (MAX: " + skater_maxes.shotBlocking + ") Shot Blocking: " + skater_attributes.shotBlocking +
+          "\n(MIN: " + skater_mins.stickchecking + ") (MAX: " + skater_maxes.stickchecking + ") Stickchecking: " + skater_attributes.stickchecking +
+          "\n(MIN: " + skater_mins.defensiveRead + ") (MAX: " + skater_maxes.defensiveRead + ") Defensive Read: " + skater_attributes.defensiveRead + "\n\n";
+
+          var playerAttributesPhysical = "[b]Physical Attributes[/b]" +
+          "\n(MIN: " + skater_mins.acceleration + ") (MAX: " + skater_maxes.acceleration + ") Acceleration: " + skater_attributes.acceleration +
+          "\n(MIN: " + skater_mins.agility + ") (MAX: " + skater_maxes.agility + ") Agility: " + skater_attributes.agility +
+          "\n(MIN: " + skater_mins.balance + ") (MAX: " + skater_maxes.balance + ") Balance: " + skater_attributes.balance +
+          "\n(MIN: " + skater_mins.speed + ") (MAX: " + skater_maxes.speed + ") Speed: " + skater_attributes.speed +
+          "\n(MIN: " + skater_mins.stamina + ") (MAX: " + skater_maxes.stamina + ") Stamina: " + skater_attributes.stamina +
+          "\n(MIN: " + skater_mins.strength + ") (MAX: " + skater_maxes.strength + ") Strength: " + skater_attributes.strength +
+          "\n(MIN: " + skater_mins.fighting + ") (MAX: " + skater_maxes.fighting + ") Fighting: " + skater_attributes.fighting + "\n\n";
+
+          var playerAttributesMental = "[b]Mental[/b]" +
+          "\n(MIN: " + skater_mins.aggression + ") (MAX: " + skater_maxes.aggression + ") Aggression: " + skater_attributes.aggression +
+          "\n(MIN: " + skater_mins.bravery + ") (MAX: " + skater_maxes.bravery + ") Bravery: " + skater_attributes.bravery +
+          "\n(MIN: " + skater_mins.determination + ") (MAX: " + skater_maxes.determination + ") Determination: " + skater_attributes.determination +
+          "\n(MIN: " + skater_mins.teamplayer + ") (MAX: " + skater_maxes.teamplayer + ") Teamplayer: " + skater_attributes.teamplayer +
+          "\n(MIN: " + skater_mins.leadership + ") (MAX: " + skater_maxes.leadership + ") Leadership: " + skater_attributes.leadership +
+          "\n(MIN: " + skater_mins.professionalism + ") (MAX: " + skater_maxes.professionalism + ") Professionalism: " + skater_attributes.professionalism +
+          "\n(MIN: " + skater_mins.temperament + ") (MAX: " + skater_maxes.temperament + ") Temperament: " + skater_attributes.temperament + "\n\n";
+
+          var playerAttributesHidden = "[b]Hidden[/b]" +
+          "\n(MIN: " + skater_mins.bigGames + ") (MAX: " + skater_maxes.bigGames + ") Big Games: " + skater_attributes.bigGames +
+          "\n(MIN: " + skater_mins.consistency + ") (MAX: " + skater_maxes.consistency + ") Consistency: " + skater_attributes.consistency +
+          "\n(MIN: " + skater_mins.adaptability + ") (MAX: " + skater_maxes.adaptability + ") Adaptability: " + skater_attributes.adaptability +
+          "\n(MIN: " + skater_mins.sportsmanship + ") (MAX: " + skater_maxes.sportsmanship + ") Sportsmanship: " + skater_attributes.sportsmanship +
+          "\n(MIN: " + skater_mins.handleFailure + ") (MAX: " + skater_maxes.handleFailure + ") Handle Failure: " + skater_attributes.handleFailure +
+          "\n(MIN: " + skater_mins.handleSuccess + ") (MAX: " + skater_maxes.handleSuccess + ") Handle Success: " + skater_attributes.handleSuccess;
+
+          var playerPageString = userInfo + playerInfo + playerTraits + playerAttributesBanked + playerAttributesOffensive + playerAttributesDefensive + playerAttributesPhysical + playerAttributesMental + playerAttributesHidden;
+          copyStringToClipboard(playerPageString);
+        } else {
+          // goalie
+          if (document.getElementById('goalieArchetypeSelector').value == "Arch Not Chosen") {
+            alert("You must choose an archetype and traits before generating your player page.");
+            return;
+          }
+
+          if (document.getElementById('goalieTraitSelectorOne').value == "T1 Not Chosen" ||
+              document.getElementById('goalieTraitSelectorTwo').value == "T2 Not Chosen") {
+            alert("You must choose your traits before generating your player page.");
+            return;
+          }
+
+          for (key in goalie_maxes) {
+            if (goalie_maxes[key] > 20) {
+              alert("WARNING: Attributes cannot be increased above 20. Fix your traits.\nSpecifically: " + key.replace(/([A-Z])/g, ' $1').trim());
+            }
+          }
+
+          var playerType = document.getElementById('goalieArchetypeSelector').options[document.getElementById('goalieArchetypeSelector').selectedIndex].innerHTML;
+          var trait1 = document.getElementById('goalieTraitSelectorOne').options[document.getElementById('goalieTraitSelectorOne').selectedIndex].innerHTML;
+          var trait2 = document.getElementById('goalieTraitSelectorTwo').options[document.getElementById('goalieTraitSelectorTwo').selectedIndex].innerHTML;
+
+          var userInfo = "[color=red][b][u]User Information[/b][/u][/color]\nUsername:\nRecruited by:\n\n";
+          var playerInfo = "[color=red][b][u]Player Information[/b][/u][/color]\nFull Name:\nAge:\nDate of Birth:\nCity of Birth:\nNationality:\nHeight:\nWeight:\nShoots:\nPosition: \nPlayer Type: [b]" + playerType + "[/b]\n\n";
+          var playerTraits = "[color=red][b][u]Traits Gained[/b][/u][/color]\nStarting Trait 1: " + trait1 + "\nStarting Trait 2: " + trait2 + "\n\n";
+          var playerAttributesBanked = "[color=red][b][u]Player Attributes[/b][/u][/color]\n[b]Banked TPE:[/b] 0\n\n";
+
+          var playerAttributesGoalie = "[b]Goalie[/b]" +
+          "\n(MIN: " + goalie_mins.blocker + ") (MAX: " + goalie_maxes.blocker + ") Blocker: " + goalie_attributes.blocker +
+          "\n(MIN: " + goalie_mins.glove + ") (MAX: " + goalie_maxes.glove + ") Glove: " + goalie_attributes.glove +
+          "\n(MIN: " + goalie_mins.passing + ") (MAX: " + goalie_maxes.passing + ") Passing: " + goalie_attributes.passing +
+          "\n(MIN: " + goalie_mins.pokeCheck + ") (MAX: " + goalie_maxes.pokeCheck + ") Poke Check: " + goalie_attributes.pokeCheck +
+          "\n(MIN: " + goalie_mins.positioning + ") (MAX: " + goalie_maxes.positioning + ") Positioning: " + goalie_attributes.positioning +
+          "\n(MIN: " + goalie_mins.rebound + ") (MAX: " + goalie_maxes.rebound + ") Rebound: " + goalie_attributes.rebound +
+          "\n(MIN: " + goalie_mins.recovery + ") (MAX: " + goalie_maxes.recovery + ") Recovery: " + goalie_attributes.recovery +
+          "\n(MIN: " + goalie_mins.puckhandling + ") (MAX: " + goalie_maxes.puckhandling + ") Puckhandling: " + goalie_attributes.puckhandling +
+          "\n(MIN: " + goalie_mins.lowShots + ") (MAX: " + goalie_maxes.lowShots + ") Low Shots: " + goalie_attributes.lowShots +
+          "\n(MIN: " + goalie_mins.reflexes + ") (MAX: " + goalie_maxes.reflexes + ") Reflexes: " + goalie_attributes.reflexes +
+          "\n(MIN: " + goalie_mins.skating + ") (MAX: " + goalie_maxes.skating + ") Skating: " + goalie_attributes.skating + "\n\n";
+
+          var playerAttributesMental = "[b]Mental[/b]" +
+          "\n(MIN: " + goalie_mins.aggression + ") (MAX: " + goalie_maxes.aggression + ") Bravery: " + goalie_attributes.aggression +
+          "\n(MIN: " + goalie_mins.determination + ") (MAX: " + goalie_maxes.determination + ") Determination: " + goalie_attributes.determination +
+          "\n(MIN: " + goalie_mins.teamplayer + ") (MAX: " + goalie_maxes.teamplayer + ") Teamplayer: " + goalie_attributes.teamplayer +
+          "\n(MIN: " + goalie_mins.leadership + ") (MAX: " + goalie_maxes.leadership + ") Leadership: " + goalie_attributes.leadership +
+          "\n(MIN: " + goalie_mins.professionalism + ") (MAX: " + goalie_maxes.professionalism + ") Professionalism: " + goalie_attributes.professionalism +
+          "\n(MIN: " + goalie_mins.mentalToughness + ") (MAX: " + goalie_maxes.mentalToughness + ") Mental Toughness: " + goalie_attributes.mentalToughness +
+          "\n(MIN: " + goalie_mins.goalieStamina + ") (MAX: " + goalie_maxes.goalieStamina + ") Goalie Stamina: " + goalie_attributes.goalieStamina + "\n\n";
+
+          var playerAttributesHidden = "[b]Hidden[/b]" +
+          "\n(MIN: " + goalie_mins.bigGames + ") (MAX: " + goalie_maxes.bigGames + ") Big Games: " + goalie_attributes.bigGames +
+          "\n(MIN: " + goalie_mins.consistency + ") (MAX: " + goalie_maxes.consistency + ") Consistency: " + goalie_attributes.consistency +
+          "\n(MIN: " + goalie_mins.adaptability + ") (MAX: " + goalie_maxes.adaptability + ") Adaptability: " + goalie_attributes.adaptability +
+          "\n(MIN: " + goalie_mins.sportsmanship + ") (MAX: " + goalie_maxes.sportsmanship + ") Sportsmanship: " + goalie_attributes.sportsmanship +
+          "\n(MIN: " + goalie_mins.handleFailure + ") (MAX: " + goalie_maxes.handleFailure + ") Handle Failure: " + goalie_attributes.handleFailure +
+          "\n(MIN: " + goalie_mins.handleSuccess + ") (MAX: " + goalie_maxes.handleSuccess + ") Handle Success: " + goalie_attributes.handleSuccess;
+
+          var playerPageString = userInfo + playerInfo + playerTraits + playerAttributesBanked + playerAttributesGoalie + playerAttributesMental + playerAttributesHidden;
+          copyStringToClipboard(playerPageString);
+        }
+        alert("Player page copied");
+      }
+    </script>
+  </head>
+  <body>
+    <h1>NSHL Player Builder</h1>
+    <p>NOTE: The NSHL Player Builder is only used to generate the player page with the correct attributes based on your archetype and chosen traits. <strong><i>You will still have to fill in the User Information and Player Information.</i></strong></p>
+    <div class="tableContainer">
+      <h2>Player Type</h2>
+      <select id="positionSelector" onchange="changePosition();" class="form-control" name="positionSelector">
+        <option value="S">Skater</option>
+        <option value="G">Goalie</option>
+      </select>
+    </div>
+    <br>
+    <div style="text-align: center;">
+      <button class="button" onclick="generatePlayerPage();">Generate Player Page</button>
+    </div>
+    <div id="divSkaterArchetype" class="tableContainer">
+      <h2>Skater Archetype</h2>
+      <select id="skaterArchetypeSelector" onchange="changeSkaterArchetype();" class="form-control" name="sArchSelector">
+        <option value="Arch Not Chosen">Skater Archetypes</option>
+        <option value="F1">F - Perimeter Shooter</option>
+        <option value="F2">F - Slot Sniper</option>
+        <option value="F3">F - Dangler</option>
+        <option value="F4">F - Speedy Forward</option>
+        <option value="F5">F - Playmaker</option>
+        <option value="F6">F - Setup Man</option>
+        <option value="F7">F - Screener</option>
+        <option value="F8">F - Power Forward</option>
+        <option value="F9">F - Counterattacking Forward</option>
+        <option value="F10">F - Two-Way Forward</option>
+        <option value="F11">F - Grinder</option>
+        <option value="F12">F - Punishing Forward</option>
+        <option value="F13">F - Backchecking Forward</option>
+        <option value="F14">F - Defensive Forward</option>
+        <option value="F15">F - Enforcer</option>
+        <option value="D1">D - Playmaking Defenseman</option>
+        <option value="D2">D - Quarterback</option>
+        <option value="D3">D - Point Shooter</option>
+        <option value="D4">D - Two-Way Defenseman</option>
+        <option value="D5">D - Mobile Defenseman</option>
+        <option value="D6">D - Stay-at-Home Defenseman</option>
+        <option value="D7">D - Punishing Defenseman</option>
+        <option value="D8">D - Minute Munching Defenseman</option>
+        <option value="D9">D - Enforcer</option>
+      </select>
+      <br>
+      <select id="skaterTraitSelectorOne" onchange="changeSkaterArchetype();" class="form-control" name="sTraitSelectorOne">
+        <option id="CT1" value="T1 Not Chosen">Choose Trait 1</option>
+        <option id="ST1_1" value="ST1">Garbage Collector: +1 Screening</option>
+        <option id="ST2_1" value="ST2">Slippery Skater: +1 Getting Open</option>
+        <option id="ST3_1" value="ST3">Needle Threader: +1 Passing</option>
+        <option id="ST4_1" value="ST4">Soft Hands: +1 Puckhandling</option>
+        <option id="ST5_1" value="ST5">Marksman: +1 Shooting Accuracy</option>
+        <option id="ST6_1" value="ST6">Cannon Shot: +1 Shooting Range</option>
+        <option id="ST7_1" value="ST7">Offensive Mindset: +1 Offensive Read</option>
+        <option id="ST8_1" value="ST8">Pure Passer: +1 Pass/Shoot Tendency</option>
+        <option id="ST9_1" value="ST9">Pure Shooter: -1 Pass/Shoot Tendency</option>
+        <option id="ST10_1" value="ST10">Puck Hound: +1 Checking</option>
+        <option id="ST11_1" value="ST11">Faceoff Ace: +1 Faceoffs</option>
+        <option id="ST12_1" value="ST12">Heavy Hitter: +1 Hitting</option>
+        <option id="ST13_1" value="ST13">High Hockey IQ: +1 Positioning</option>
+        <option id="ST14_1" value="ST14">Human Shield: +1 Shot Blocking</option>
+        <option id="ST15_1" value="ST15">Pocket Picker: +1 Stickchecking</option>
+        <option id="ST16_1" value="ST16">Defensive Mindset: +1 Defensive Read</option>
+        <option id="ST17_1" value="ST17">Quick Feet: +1 Acceleration</option>
+        <option id="ST18_1" value="ST18">Fleet-Footed: +1 Agility</option>
+        <option id="ST19_1" value="ST19">Core Strength: +1 Balance</option>
+        <option id="ST20_1" value="ST20">Power Skater: +1 Speed</option>
+        <option id="ST21_1" value="ST21">Marathon Man: +1 Stamina</option>
+        <option id="ST22_1" value="ST22">Athletic: +1 Strength</option>
+        <option id="ST23_1" value="ST23">Brawler: +1 Fighting</option>
+        <option id="ST24_1" value="ST24">Truculent: +1 Aggression</option>
+        <option id="ST25_1" value="ST25">Fearless: +1 Bravery</option>
+        <option id="ST26_1" value="ST26">Strong Work Ethic: +1 Determination</option>
+        <option id="ST27_1" value="ST27">Cheerleader: +1 Teamplayer</option>
+        <option id="ST28_1" value="ST28">Natural Leader: +1 Leadership</option>
+        <option id="ST29_1" value="ST29">White-Collar: +1 Professionalism</option>
+        <option id="ST30_1" value="ST30">Great Character: +1 Temperament</option>
+        <option id="ST31_1" value="ST31">Clutch Player: +1 Big Games</option>
+        <option id="ST32_1" value="ST32">Versatile: +1 Adaptability</option>
+        <option id="ST33_1" value="ST33">Every Day Pro: +1 Consistency</option>
+        <option id="ST34_1" value="ST34">Fair Player: +1 Sportsmanship</option>
+        <option id="ST35_1" value="ST35">Faces Adversity: +1 Handle Failure</option>
+        <option id="ST36_1" value="ST36">Loves Winning: +1 Handle Success</option>
+      </select>
+      <br>
+      <select id="skaterTraitSelectorTwo" onchange="changeSkaterArchetype();" class="form-control" name="sTraitSelectorTwo">
+        <option id="CT2" value="T2 Not Chosen">Choose Trait 2</option>
+        <option id="ST1_2" value="ST1">Garbage Collector: +1 Screening</option>
+        <option id="ST2_2" value="ST2">Slippery Skater: +1 Getting Open</option>
+        <option id="ST3_2" value="ST3">Needle Threader: +1 Passing</option>
+        <option id="ST4_2" value="ST4">Soft Hands: +1 Puckhandling</option>
+        <option id="ST5_2" value="ST5">Marksman: +1 Shooting Accuracy</option>
+        <option id="ST6_2" value="ST6">Cannon Shot: +1 Shooting Range</option>
+        <option id="ST7_2" value="ST7">Offensive Mindset: +1 Offensive Read</option>
+        <option id="ST8_2" value="ST8">Pure Passer: +1 Pass/Shoot Tendency</option>
+        <option id="ST9_2" value="ST9">Pure Shooter: -1 Pass/Shoot Tendency</option>
+        <option id="ST10_2" value="ST10">Puck Hound: +1 Checking</option>
+        <option id="ST11_2" value="ST11">Faceoff Ace: +1 Faceoffs</option>
+        <option id="ST12_2" value="ST12">Heavy Hitter: +1 Hitting</option>
+        <option id="ST13_2" value="ST13">High Hockey IQ: +1 Positioning</option>
+        <option id="ST14_2" value="ST14">Human Shield: +1 Shot Blocking</option>
+        <option id="ST15_2" value="ST15">Pocket Picker: +1 Stickchecking</option>
+        <option id="ST16_2" value="ST16">Defensive Mindset: +1 Defensive Read</option>
+        <option id="ST17_2" value="ST17">Quick Feet: +1 Acceleration</option>
+        <option id="ST18_2" value="ST18">Fleet-Footed: +1 Agility</option>
+        <option id="ST19_2" value="ST19">Core Strength: +1 Balance</option>
+        <option id="ST20_2" value="ST20">Power Skater: +1 Speed</option>
+        <option id="ST21_2" value="ST21">Marathon Man: +1 Stamina</option>
+        <option id="ST22_2" value="ST22">Athletic: +1 Strength</option>
+        <option id="ST23_2" value="ST23">Brawler: +1 Fighting</option>
+        <option id="ST24_2" value="ST24">Truculent: +1 Aggression</option>
+        <option id="ST25_2" value="ST25">Fearless: +1 Bravery</option>
+        <option id="ST26_2" value="ST26">Strong Work Ethic: +1 Determination</option>
+        <option id="ST27_2" value="ST27">Cheerleader: +1 Teamplayer</option>
+        <option id="ST28_2" value="ST28">Natural Leader: +1 Leadership</option>
+        <option id="ST29_2" value="ST29">White-Collar: +1 Professionalism</option>
+        <option id="ST30_2" value="ST30">Great Character: +1 Temperament</option>
+        <option id="ST31_2" value="ST31">Clutch Player: +1 Big Games</option>
+        <option id="ST32_2" value="ST32">Versatile: +1 Adaptability</option>
+        <option id="ST33_2" value="ST33">Every Day Pro: +1 Consistency</option>
+        <option id="ST34_2" value="ST34">Fair Player: +1 Sportsmanship</option>
+        <option id="ST35_2" value="ST35">Faces Adversity: +1 Handle Failure</option>
+        <option id="ST36_2" value="ST36">Loves Winning: +1 Handle Success</option>
+      </select>
+      <br>
+      <select id="skaterTraitSelectorThree" onchange="changeSkaterArchetype();" class="form-control" name="sTraitSelectorTwo">
+        <option id="CT3" value="T3 Not Chosen">Choose Trait 3</option>
+        <option id="ST1_3" value="ST1">Garbage Collector: +1 Screening</option>
+        <option id="ST2_3" value="ST2">Slippery Skater: +1 Getting Open</option>
+        <option id="ST3_3" value="ST3">Needle Threader: +1 Passing</option>
+        <option id="ST4_3" value="ST4">Soft Hands: +1 Puckhandling</option>
+        <option id="ST5_3" value="ST5">Marksman: +1 Shooting Accuracy</option>
+        <option id="ST6_3" value="ST6">Cannon Shot: +1 Shooting Range</option>
+        <option id="ST7_3" value="ST7">Offensive Mindset: +1 Offensive Read</option>
+        <option id="ST8_3" value="ST8">Pure Passer: +1 Pass/Shoot Tendency</option>
+        <option id="ST9_3" value="ST9">Pure Shooter: -1 Pass/Shoot Tendency</option>
+        <option id="ST10_3" value="ST10">Puck Hound: +1 Checking</option>
+        <option id="ST11_3" value="ST11">Faceoff Ace: +1 Faceoffs</option>
+        <option id="ST12_3" value="ST12">Heavy Hitter: +1 Hitting</option>
+        <option id="ST13_3" value="ST13">High Hockey IQ: +1 Positioning</option>
+        <option id="ST14_3" value="ST14">Human Shield: +1 Shot Blocking</option>
+        <option id="ST15_3" value="ST15">Pocket Picker: +1 Stickchecking</option>
+        <option id="ST16_3" value="ST16">Defensive Mindset: +1 Defensive Read</option>
+        <option id="ST17_3" value="ST17">Quick Feet: +1 Acceleration</option>
+        <option id="ST18_3" value="ST18">Fleet-Footed: +1 Agility</option>
+        <option id="ST19_3" value="ST19">Core Strength: +1 Balance</option>
+        <option id="ST20_3" value="ST20">Power Skater: +1 Speed</option>
+        <option id="ST21_3" value="ST21">Marathon Man: +1 Stamina</option>
+        <option id="ST22_3" value="ST22">Athletic: +1 Strength</option>
+        <option id="ST23_3" value="ST23">Brawler: +1 Fighting</option>
+        <option id="ST24_3" value="ST24">Truculent: +1 Aggression</option>
+        <option id="ST25_3" value="ST25">Fearless: +1 Bravery</option>
+        <option id="ST26_3" value="ST26">Strong Work Ethic: +1 Determination</option>
+        <option id="ST27_3" value="ST27">Cheerleader: +1 Teamplayer</option>
+        <option id="ST28_3" value="ST28">Natural Leader: +1 Leadership</option>
+        <option id="ST29_3" value="ST29">White-Collar: +1 Professionalism</option>
+        <option id="ST30_3" value="ST30">Great Character: +1 Temperament</option>
+        <option id="ST31_3" value="ST31">Clutch Player: +1 Big Games</option>
+        <option id="ST32_3" value="ST32">Versatile: +1 Adaptability</option>
+        <option id="ST33_3" value="ST33">Every Day Pro: +1 Consistency</option>
+        <option id="ST34_3" value="ST34">Fair Player: +1 Sportsmanship</option>
+        <option id="ST35_3" value="ST35">Faces Adversity: +1 Handle Failure</option>
+        <option id="ST36_3" value="ST36">Loves Winning: +1 Handle Success</option>
+      </select>
+      <table>
+        <th colspan="4">Skater Attributes</th>
+        <tr><td><strong>Attribute</strong></td><td><strong>Min Level</strong></td><td><strong>Max Level</strong></td><td><strong>Starting Level</strong></td></tr>
+        <tr><td id="screening-At"></td><td id="screening-Min"></td><td id="screening-Max"></td><td id="screening-Level"></td></tr>
+        <tr><td id="gettingOpen-At"></td><td id="gettingOpen-Min"></td><td id="gettingOpen-Max"></td><td id="gettingOpen-Level"></td></tr>
+        <tr><td id="passing-At"></td><td id="passing-Min"></td><td id="passing-Max"></td><td id="passing-Level"></td></tr>
+        <tr><td id="puckhandling-At"></td><td id="puckhandling-Min"></td><td id="puckhandling-Max"></td><td id="puckhandling-Level"></td></tr>
+        <tr><td id="shootingAccuracy-At"></td><td id="shootingAccuracy-Min"></td><td id="shootingAccuracy-Max"></td><td id="shootingAccuracy-Level"></td></tr>
+        <tr><td id="shootingRange-At"></td><td id="shootingRange-Min"></td><td id="shootingRange-Max"></td><td id="shootingRange-Level"></td></tr>
+        <tr><td id="offensiveRead-At"></td><td id="offensiveRead-Min"></td><td id="offensiveRead-Max"></td><td id="offensiveRead-Level"></td></tr>
+        <tr><td id="passShootTendency-At"></td><td id="passShootTendency-Min"></td><td id="passShootTendency-Max"></td><td id="passShootTendency-Level"></td></tr>
+        <tr><td id="checking-At"></td><td id="checking-Min"></td><td id="checking-Max"></td><td id="checking-Level"></td></tr>
+        <tr><td id="faceoffs-At"></td><td id="faceoffs-Min"></td><td id="faceoffs-Max"></td><td id="faceoffs-Level"></td></tr>
+        <tr><td id="hitting-At"></td><td id="hitting-Min"></td><td id="hitting-Max"></td><td id="hitting-Level"></td></tr>
+        <tr><td id="positioning-At"></td><td id="positioning-Min"></td><td id="positioning-Max"></td><td id="positioning-Level"></td></tr>
+        <tr><td id="shotBlocking-At"></td><td id="shotBlocking-Min"></td><td id="shotBlocking-Max"></td><td id="shotBlocking-Level"></td></tr>
+        <tr><td id="stickchecking-At"></td><td id="stickchecking-Min"></td><td id="stickchecking-Max"></td><td id="stickchecking-Level"></td></tr>
+        <tr><td id="defensiveRead-At"></td><td id="defensiveRead-Min"></td><td id="defensiveRead-Max"></td><td id="defensiveRead-Level"></td></tr>
+        <tr><td id="acceleration-At"></td><td id="acceleration-Min"></td><td id="acceleration-Max"></td><td id="acceleration-Level"></td></tr>
+        <tr><td id="agility-At"></td><td id="agility-Min"></td><td id="agility-Max"></td><td id="agility-Level"></td></tr>
+        <tr><td id="balance-At"></td><td id="balance-Min"></td><td id="balance-Max"></td><td id="balance-Level"></td></tr>
+        <tr><td id="speed-At"></td><td id="speed-Min"></td><td id="speed-Max"></td><td id="speed-Level"></td></tr>
+        <tr><td id="stamina-At"></td><td id="stamina-Min"></td><td id="stamina-Max"></td><td id="stamina-Level"></td></tr>
+        <tr><td id="strength-At"></td><td id="strength-Min"></td><td id="strength-Max"></td><td id="strength-Level"></td></tr>
+        <tr><td id="fighting-At"></td><td id="fighting-Min"></td><td id="fighting-Max"></td><td id="fighting-Level"></td></tr>
+        <tr><td id="aggression-At"></td><td id="aggression-Min"></td><td id="aggression-Max"></td><td id="aggression-Level"></td></tr>
+        <tr><td id="bravery-At"></td><td id="bravery-Min"></td><td id="bravery-Max"></td><td id="bravery-Level"></td></tr>
+        <tr><td id="determination-At"></td><td id="determination-Min"></td><td id="determination-Max"></td><td id="determination-Level"></td></tr>
+        <tr><td id="teamplayer-At"></td><td id="teamplayer-Min"></td><td id="teamplayer-Max"></td><td id="teamplayer-Level"></td></tr>
+        <tr><td id="leadership-At"></td><td id="leadership-Min"></td><td id="leadership-Max"></td><td id="leadership-Level"></td></tr>
+        <tr><td id="professionalism-At"></td><td id="professionalism-Min"></td><td id="professionalism-Max"></td><td id="professionalism-Level"></td></tr>
+        <tr><td id="temperament-At"></td><td id="temperament-Min"></td><td id="temperament-Max"></td><td id="temperament-Level"></td></tr>
+        <tr><td id="bigGames-At"></td><td id="bigGames-Min"></td><td id="bigGames-Max"></td><td id="bigGames-Level"></td></tr>
+        <tr><td id="consistency-At"></td><td id="consistency-Min"></td><td id="consistency-Max"></td><td id="consistency-Level"></td></tr>
+        <tr><td id="adaptability-At"></td><td id="adaptability-Min"></td><td id="adaptability-Max"></td><td id="adaptability-Level"></td></tr>
+        <tr><td id="sportsmanship-At"></td><td id="sportsmanship-Min"></td><td id="sportsmanship-Max"></td><td id="sportsmanship-Level"></td></tr>
+        <tr><td id="handleFailure-At"></td><td id="handleFailure-Min"></td><td id="handleFailure-Max"></td><td id="handleFailure-Level"></td></tr>
+        <tr><td id="handleSuccess-At"></td><td id="handleSuccess-Min"></td><td id="handleSuccess-Max"></td><td id="handleSuccess-Level"></td></tr>
+      </table>
+    </div>
+    <div id="divGoalieArchetype" class="tableContainer">
+      <h2>Goalie Archetype</h2>
+      <select id="goalieArchetypeSelector" onchange="changeGoalieArchetype();" class="form-control" name="gArchSelector">
+        <option value="Arch Not Chosen">Goalie Archetypes</option>
+        <option value="G1">G - Standup</option>
+        <option value="G2">G - Aggressive Goalie</option>
+        <option value="G3">G - Pure Butterfly</option>3
+        <option value="G4">G - Techincal</option>
+        <option value="G5">G - Reflexes</option>
+      </select>
+      <br>
+      <select id="goalieTraitSelectorOne" onchange="changeGoalieArchetype();" class="form-control" name="gTraitSelectorTwo">
+        <option id="GCT1" value="T1 Not Chosen">Choose Trait 1</option>
+        <option id="GT1_1" value="GT1">Fast Blocker: +1 Blocker</option>
+        <option id="GT2_1" value="GT2">Fast Glove: +1 Glove</option>
+        <option id="GT3_1" value="GT3">3rd Defenseman: +1 Passing</option>
+        <option id="GT4_1" value="GT4">Aggressive Stick: +1 Poke Check</option>
+        <option id="GT5_1" value="GT5">Great Technique: +1 Positioning</option>
+        <option id="GT6_1" value="GT6">Strong Rebound Control: +1 Rebound</option>
+        <option id="GT7_1" value="GT7">Strong Core: +1 Recovery</option>
+        <option id="GT8_1" value="GT8">Solid Five Hole: +1 Low Shots</option>
+        <option id="GT9_1" value="GT9">Cat-Like Reflexes: +1 Reflexes</option>
+        <option id="GT10_1" value="GT10">Elite Edgework: +1 Skating</option>
+        <option id="GT11_1" value="GT11">Truculent: +1 Aggression</option>
+        <option id="GT12_1" value="GT13">Strong Work Ethic: +1 Determination</option>
+        <option id="GT13_1" value="GT14">Cheerleader: +1 Teamplayer</option>
+        <option id="GT14_1" value="GT15">Natural Leader: +1 Leadership</option>
+        <option id="GT15_1" value="GT16">White-Collar: +1 Professionalism</option>
+        <option id="GT16_1" value="GT16">Unshakable: +1 Mental Toughness</option>
+        <option id="GT17_1" value="GT16">Longevity: +1 Goalie Stamina</option>
+        <option id="GT18_1" value="GT18">Clutch Player: +1 Big Games</option>
+        <option id="GT19_1" value="GT20">Every Day Pro: +1 Consistency</option>
+        <option id="GT20_1" value="GT19">Versatile: +1 Adaptability</option>
+        <option id="GT21_1" value="GT21">Fair Player: +1 Sportsmanship</option>
+        <option id="GT22_1" value="GT22">Faces Adversity: +1 Handle Failure</option>
+        <option id="GT23_1" value="GT23">Loves Winning: +1 Handle Success</option>
+      </select>
+      <br>
+      <select id="goalieTraitSelectorTwo" onchange="changeGoalieArchetype();" class="form-control" name="gTraitSelectorTwo">
+          <option id="GCT2" value="T2 Not Chosen">Choose Trait 2</option>
+          <option id="GT1_1" value="GT1">Fast Blocker: +1 Blocker</option>
+          <option id="GT2_1" value="GT2">Fast Glove: +1 Glove</option>
+          <option id="GT3_1" value="GT3">3rd Defenseman: +1 Passing</option>
+          <option id="GT4_1" value="GT4">Aggressive Stick: +1 Poke Check</option>
+          <option id="GT5_1" value="GT5">Great Technique: +1 Positioning</option>
+          <option id="GT6_1" value="GT6">Strong Rebound Control: +1 Rebound</option>
+          <option id="GT7_1" value="GT7">Strong Core: +1 Recovery</option>
+          <option id="GT8_1" value="GT8">Solid Five Hole: +1  Low Shots</option>
+          <option id="GT9_1" value="GT9">Cat-Like Reflexes: +1 Reflexes</option>
+          <option id="GT10_1" value="GT10">Elite Edgework: +1 Skating</option>
+          <option id="GT11_1" value="GT11">Truculent: +1 Aggression</option>
+          <option id="GT12_1" value="GT13">Strong Work Ethic: +1 Determination</option>
+          <option id="GT13_1" value="GT14">Cheerleader: +1 Teamplayer</option>
+          <option id="GT14_1" value="GT15">Natural Leader: +1 Leadership</option>
+          <option id="GT15_1" value="GT16">White-Collar: +1 Professionalism</option>
+          <option id="GT16_1" value="GT16">Unshakable: +1 Mental Toughness</option>
+          <option id="GT17_1" value="GT16">Longevity: +1 Goalie Stamina</option>
+          <option id="GT18_1" value="GT18">Clutch Player: +1 Big Games</option>
+          <option id="GT19_1" value="GT20">Every Day Pro: +1 Consistency</option>
+          <option id="GT20_1" value="GT19">Versatile: +1 Adaptability</option>
+          <option id="GT21_1" value="GT21">Fair Player: +1 Sportsmanship</option>
+          <option id="GT22_1" value="GT22">Faces Adversity: +1 Handle Failure</option>
+          <option id="GT23_1" value="GT23">Loves Winning: +1 Handle Success</option>
+      </select>
+      <table>
+        <th colspan="4">Goalie Attributes</th>
+        <tr><td><strong>Attribute</strong></td><td><strong>Min Level</strong></td><td><strong>Max Level</strong></td><td><strong>Starting Level</strong></td></tr>
+        <tr><td id="blocker-Atg"></td><td id="blocker-Ming"></td><td id=blocker-Maxg></td><td id=blocker-Start></td></tr>
+        <tr><td id="glove-Atg"></td><td id="glove-Ming"></td><td id=glove-Maxg></td><td id=glove-Start></td></tr>
+        <tr><td id="passing-Atg"></td><td id="passing-Ming"></td><td id=passing-Maxg></td><td id=passing-Start></td></tr>
+        <tr><td id="pokeCheck-Atg"></td><td id="pokeCheck-Ming"></td><td id=pokeCheck-Maxg></td><td id=pokeCheck-Start></td></tr>
+        <tr><td id="positioning-Atg"></td><td id="positioning-Ming"></td><td id=positioning-Maxg></td><td id=positioning-Start></td></tr>
+        <tr><td id="rebound-Atg"></td><td id="rebound-Ming"></td><td id=rebound-Maxg></td><td id=rebound-Start></td></tr>
+        <tr><td id="recovery-Atg"></td><td id="recovery-Ming"></td><td id=recovery-Maxg></td><td id=recovery-Start></td></tr>
+        <tr><td id="puckhandling-Atg"></td><td id="puckhandling-Ming"></td><td id=puckhandling-Maxg></td><td id=puckhandling-Start></td></tr>
+        <tr><td id="lowShots-Atg"></td><td id="lowShots-Ming"></td><td id=lowShots-Maxg></td><td id=lowShots-Start></td></tr>
+        <tr><td id="reflexes-Atg"></td><td id="reflexes-Ming"></td><td id=reflexes-Maxg></td><td id=reflexes-Start></td></tr>
+        <tr><td id="skating-Atg"></td><td id="skating-Ming"></td><td id=skating-Maxg></td><td id=skating-Start></td></tr>
+        <tr><td id="aggression-Atg"></td><td id="aggression-Ming"></td><td id=aggression-Maxg></td><td id=aggression-Start></td></tr>
+        <tr><td id="determination-Atg"></td><td id="determination-Ming"></td><td id=determination-Maxg></td><td id=determination-Start></td></tr>
+        <tr><td id="teamplayer-Atg"></td><td id="teamplayer-Ming"></td><td id=teamplayer-Maxg></td><td id=teamplayer-Start></td></tr>
+        <tr><td id="leadership-Atg"></td><td id="leadership-Ming"></td><td id=leadership-Maxg></td><td id=leadership-Start></td></tr>
+        <tr><td id="professionalism-Atg"></td><td id="professionalism-Ming"></td><td id=professionalism-Maxg></td><td id=professionalism-Start></td></tr>
+        <tr><td id="mentalToughness-Atg"></td><td id="mentalToughness-Ming"></td><td id=mentalToughness-Maxg></td><td id=mentalToughness-Start></td></tr>
+        <tr><td id="goalieStamina-Atg"></td><td id="goalieStamina-Ming"></td><td id=goalieStamina-Maxg></td><td id=goalieStamina-Start></td></tr>
+        <tr><td id="bigGames-Atg"></td><td id="bigGames-Ming"></td><td id=bigGames-Maxg></td><td id=bigGames-Start></td></tr>
+        <tr><td id="consistency-Atg"></td><td id="consistency-Ming"></td><td id=consistency-Maxg></td><td id=consistency-Start></td></tr>
+        <tr><td id="adaptability-Atg"></td><td id="adaptability-Ming"></td><td id=adaptability-Maxg></td><td id=adaptability-Start></td></tr>
+        <tr><td id="sportsmanship-Atg"></td><td id="sportsmanship-Ming"></td><td id=sportsmanship-Maxg></td><td id=sportsmanship-Start></td></tr>
+        <tr><td id="handleFailure-Atg"></td><td id="handleFailure-Ming"></td><td id=handleFailure-Maxg></td><td id=handleFailure-Start></td></tr>
+        <tr><td id="handleSuccess-Atg"></td><td id="handleSuccess-Ming"></td><td id=handleSuccess-Maxg></td><td id=handleSuccess-Start></td></tr>
+      </table>
+    </div>
+    <script>
+      changePosition();
+      disableSkaterTraits();
+      disableGoalieTraits();
+      updateAttributeTable("skater");
+      updateAttributeTable("goalie");
+    </script>
+  </body>
+</html>
